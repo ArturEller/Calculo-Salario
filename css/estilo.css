@@ -15,6 +15,10 @@ div > label{
     color:  #1c0f57;  
 }
 
+.form-alert{
+    text-align: center;
+}
+
 .btn-aling{
     width: 45%;
 }
