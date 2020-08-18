@@ -16,34 +16,37 @@
         
 
         <form>
-            <div class="alert alert-danger form-alert" role="alert" style="display: none;" id = "alertErro"></div>
-            <div class="alert alert-success form-alert" role="alert" style="display: none;" id = "alertSucesso"></div>
             <div class="form-group">
                 <h4>Cálculo do Salário</h4>
                 <hr>
             </div>
             <div class="form-group">
+                <i class = "fa fa-user-circle" aria-hidden="true"></i>
                 <label>Nome</label>
                 <input type="text" class="form-control" id = "nome">
             </div>
 
             <div class="form-group">    
+                <i class = "fa fa-money" aria-hidden="true"></i>
                 <label>Valor da Hora</label>
                 <input type="number" class="form-control form-input" id = "valorHora" step="0.10" placeholder="0,00">
             </div>
 
             <div class="form-group">
+                <i class="fa fa-clock-o" aria-hidden="true"></i>
                 <label>Horas Trabalhadas</label>
                 <input type="number" class="form-control form-input" id = "horaTrab" step="0.10" placeholder="0,00">
             </div>
 
             <div class="form-group">
+                <i class = "fa fa-money" aria-hidden="true"></i>
                 <label>Salário Bruto</label>
                 <fieldset disabled>
                     <input type="number" class="form-control form-input dinheiro" id = "salarioBruto" placeholder="0,00">
                 </fieldset>
             </div>
             <div class="form-group">
+                <i class = "fa fa-money" aria-hidden="true"></i>
                 <label>IRRF (R$)</label>
                 <fieldset disabled>
                     <input type="number" class="form-control form-input dinheiro" id = "irrf" placeholder="0,00">
@@ -51,6 +54,7 @@
             </div>
 
             <div class="form-group">
+                <i class = "fa fa-money" aria-hidden="true"></i>
                 <label>Gratificação</label>
                 <fieldset disabled>
                     <input type="number" class="form-control form-input dinheiro" id = "gratificacao" placeholder="0,00">
@@ -58,15 +62,20 @@
             </div>
 
             <div class="form-group">
+                <i class = "fa fa-money" aria-hidden="true"></i>
                 <label>Salário Líquido</label>
                 <fieldset disabled>
                     <input type="number" class="form-control form-input dinheiro" id = "salarioLiquido" placeholder="0,00">
                 </fieldset>
             </div>
 
+            <div class="alert alert-danger form-alert" role="alert" style="display: none;" id = "alertErro"></div>
+            <div class="alert alert-success form-alert" role="alert" style="display: none;" id = "alertSucesso"></div>
+
             <div class="form-group form-btn">
-                <button type="button" onclick="calcularSalario()" class = "btn btn-success btn-aling">Cálcular</button>
-                <button type="reset" class = "btn btn-light btn-aling">Limpar</button>
+                
+                <button type="button" onclick="calcularSalario()" class = "btn btn-success btn-aling"><i class="fa fa-check" aria-hidden="true"></i> Cálcular</button>
+                <button type="reset" class = "btn btn-light btn-aling"><i class="fa fa-times-circle" aria-hidden="true"></i> Limpar</button>
             </div>
 
         </form>
