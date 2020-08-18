@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo do Salário</title>
+
+    <link rel="stylesheet" href="bootstrap-4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+    
+    
+    <div class="container">
+        <div class="alert alert-danger" role="alert" style="display: none;" id = "alertErro">
+            
+        </div>
+
+        <div class="alert alert-success" role="alert" style="display: none;" id = "alertSucesso">
+            Cálculo realizado com sucesso
+        </div>
+
+        <form>
+            <div class="form-group">
+                <h4>Cálculo do Salário</h4>
+                <hr>
+            </div>
+            <div class="form-group">
+                <label>Nome</label>
+                <input type="text" class="form-control" id = "nome">
+            </div>
+
+            <div class="form-group">    
+                <label>Valor da Hora</label>
+                <input type="number" class="form-control form-input" id = "valorHora" step="0.10" placeholder="0,00">
+            </div>
+
+            <div class="form-group">
+                <label>Horas Trabalhadas</label>
+                <input type="number" class="form-control form-input" id = "horaTrab" step="0.10" placeholder="0,00">
+            </div>
+
+            <div class="form-group">
+                <label>Salário Bruto</label>
+                <fieldset disabled>
+                    <input type="number" class="form-control form-input dinheiro" id = "salarioBruto" placeholder="0,00">
+                </fieldset>
+            </div>
+            <div class="form-group">
+                <label>IRRF (R$)</label>
+                <fieldset disabled>
+                    <input type="number" class="form-control form-input dinheiro" id = "irrf" placeholder="0,00">
+                </fieldset>
+            </div>
+
+            <div class="form-group">
+                <label>Gratificação</label>
+                <fieldset disabled>
+                    <input type="number" class="form-control form-input dinheiro" id = "gratificacao" placeholder="0,00">
+                </fieldset>
+            </div>
+
+            <div class="form-group">
+                <label>Salário Líquido</label>
+                <fieldset disabled>
+                    <input type="number" class="form-control form-input dinheiro" id = "salarioLiquido" placeholder="0,00">
+                </fieldset>
+            </div>
+
+            <div class="form-group form-btn">
+                <button type="button" onclick="calcularSalario()" class = "btn btn-success btn-aling">Cálcular</button>
+                <button type="reset" class = "btn btn-light btn-aling">Limpar</button>
+            </div>
+
+        </form>
+    </div>
+
+
+
+
+    
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="bootstrap-4.0.0/js/bootstrap.min.js"></script>
+
+
+    <script type="text/javascript">
+        const calcularSalario = function(){
+            let nome = document.getElementById('nome')
+            let valorHoraHTML = document.getElementById('valorHora')
+            let valorHora = parseFloat(valorHoraHTML.value) // awdawdad 
+            let horasTrabHTML = document.getElementById('horaTrab')
+            let horasTrab = parseFloat(horasTrabHTML.value) // awdawdawd
+            let irrfHTML = document.getElementById('irrf')
+            let gratificacaoHTML = document.getElementById('gratificacao')
+            let salarioLiquidoHTML = document.getElementById('salarioLiquido')
+            let salarioBrutoHTML = document.getElementById('salarioBruto')
+            let irrf 
+            let gratificacao 
+            let valorGratificacao 
+            let salarioLiquido
+
+            let salarioBruto = (valorHora * horasTrab)
+             
+
+            if(nome.value == "" || valorHoraHTML.value == "" || horasTrabHTML.value == ""){
+                mesnsagemErro("Preencha todos os dados corretamente")
+            }else{
+                mesnsagemSucesso("Cálculo realizado com sucesso")
+
+                salarioBrutoHTML.value = salarioBruto
+
+                if(salarioBruto <= 1903.98){
+                    irrf = 0
+                    irrfHTML.value = irrf.toFixed(2)
+                }else if(salarioBruto >= 1903.99 && salarioBruto <= 2826.65){
+                    irrf = (salarioBruto*7.5)/100
+                    irrfHTML.value = irrf.toFixed(2)
+                }else if(salarioBruto >= 2826.66 && salarioBruto <= 3751.05){
+                    irrf = (salarioBruto*15)/100
+                    irrf.value = irrf.toFixed(2)
+                }else if(salarioBruto >= 3751.06 && salarioBruto <= 4664.68){
+                    irrf = (salarioBruto*22.5)/100
+                    irrfHTML.value = irrf.toFixed(2)
+                }else{
+                    irrf = (salarioBruto*27.5)/100
+                    irrfHTML.value = irrf.toFixed(2)
+                }
+
+                if(horasTrab > 160){
+                    gratificacao = (salarioBruto*15)/100
+                    gratificacaoHTML.value = gratificacao.toFixed(2)
+                }else{
+                    gratificacao = 0
+                    gratificacaoHTML.value = gratificacao.toFixed(2)
+                }
+                salarioLiquido = salarioBruto + gratificacao - irrf
+                salarioLiquidoHTML.value = salarioLiquido
+            }
+
+        }
+
+        const mesnsagemErro = function(msg){
+            document.getElementById('alertErro').innerHTML = msg
+            $("#alertErro").slideDown(400).delay(2000).slideUp(400);
+        }
+        const mesnsagemSucesso = function(msg){
+            document.getElementById('alertSucesso').innerHTML = msg
+            $("#alertSucesso").slideDown(400).delay(2000).slideUp(400);
+        }
+
+    </script>
+</body>
+</html>
